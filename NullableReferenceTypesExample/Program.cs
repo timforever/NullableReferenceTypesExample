@@ -36,12 +36,10 @@ namespace NullableReferenceTypesExample
             var cheesePizza = new Pizza(noToppings);
 
             Console.WriteLine(cheesePizza.GetDescription("Cheese Pizza"));
-            
-            var meatLovers =
-                new Pizza(
-                    new List<Topping>
-                        { Topping.Ham, Topping.Meatball, Topping.Pepperoni, Topping.Sausage, Topping.Bacon },
-                    new List<Cheese> { CommonCheeses.Mozzarella, CommonCheeses.Parmesan });
+
+            var meatLovers = new Pizza(
+                new List<Topping> { Topping.Ham, Topping.Meatball, Topping.Pepperoni, Topping.Sausage, Topping.Bacon },
+                new List<Cheese> { CommonCheeses.Mozzarella, CommonCheeses.Parmesan });
 
             Console.WriteLine(meatLovers.GetDescription("Meat Lovers' Pizza"));
 
@@ -78,15 +76,17 @@ namespace NullableReferenceTypesExample
         // called from the constructor and it will assign a non-null value to Cheeses.
         public List<Cheese> Cheeses { get; private set; } // = null!;
 
-        // Because we're in a nullable reference context (its project wide in this example), this constructor
+        // Because we're in a nullable reference context (it's project wide in this example), this constructor
         // is stating that toppings cannot be null, and if a nullable reference is passed in, it will generate
         // a warning.
+        // On the other hand, 'cheeses' is stating that null may be passed in. This is indicated by the '?' annotation
+        // on List<Cheese>?.
         /// <summary>
         /// Make me a pizza!
         /// </summary>
         /// <param name="toppings">Pizza toppings, such as pepperoni, sausage, etc.</param>
         /// <param name="cheeses">If null, Cheeses will default to Mozzarella.</param>
-        public Pizza(List<Topping> toppings, List<Cheese>? cheeses = null)
+        public Pizza(List<Topping> toppings, List<Cheese>? cheeses = default)
         {
             Toppings = toppings;
 
