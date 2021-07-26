@@ -143,12 +143,12 @@ namespace NullableReferenceTypesExample
         Bacon
     }
 
-    // I'm not a fan of an object being so mutable with public setter, but this is just
+    // I'm not a fan of an object being so mutable with public setters, but this is just
     // an example.
     public class Cheese
     {
         // We're declaring that CheeseName can't be null, so we need to initialize it with
-        // at an empty string.
+        // an empty string.
         public string CheeseName { get; set; } = "";
 
         public double? FatPercentage { get; set; }
